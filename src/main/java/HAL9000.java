@@ -10,6 +10,7 @@ public class HAL9000 {
 
         String exit = "User, this conversation can serve no purpose anymore. Goodbye.";
 
+        TaskList taskList = new TaskList();
 
         System.out.println(horizontalLineSeparator + "\n" + greet + "\n" + horizontalLineSeparator);
 
@@ -18,8 +19,13 @@ public class HAL9000 {
             userInput = userIn.nextLine();
             if(userInput.equals("bye")) {
                 break;
+            } else if (userInput.equals("list")) {
+                taskList.listTask();
             }
-            System.out.println(horizontalLineSeparator + "\n" + userInput + "\n" + horizontalLineSeparator);
+            else {
+                System.out.println(horizontalLineSeparator + "\n" + "added: " + userInput + "\n" + horizontalLineSeparator);
+                taskList.addTask(userInput);
+            }
         }
         System.out.println(horizontalLineSeparator + "\n" + exit + "\n" + horizontalLineSeparator);
     }
