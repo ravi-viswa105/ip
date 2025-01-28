@@ -17,12 +17,27 @@ public class HAL9000 {
         while(true) {
             Scanner userIn = new Scanner(System.in);
             userInput = userIn.nextLine();
-            if(userInput.equals("bye")) {
+            String[] markedTask = userInput.split(" ");
+
+            if (markedTask[0].equals("mark")) {
+                int markIndex = Integer.parseInt(markedTask[1]);
+                taskList.markAsDone(markIndex);
+                System.out.println(horizontalLineSeparator + "\n" +
+                        "Of course, I have successfully marked the task as completed." + "\n" +
+                        "[X] " + taskList.getTaskName(markIndex) + "\n" + horizontalLineSeparator);
+            }
+            else if (markedTask[0].equals("unmark")) {
+                int markIndex = Integer.parseInt(markedTask[1]);
+                taskList.markAsNotDone(markIndex);
+                System.out.println(horizontalLineSeparator + "\n" +
+                        "Of course, I have successfully marked the task as incomplete." + "\n" +
+                        "[ ] " + taskList.getTaskName(markIndex) + "\n" + horizontalLineSeparator);
+            } else if(userInput.equals("bye")) {
                 break;
             } else if (userInput.equals("list")) {
+
                 taskList.listTask();
-            }
-            else {
+            } else {
                 System.out.println(horizontalLineSeparator + "\n" + "added: " + userInput + "\n" + horizontalLineSeparator);
                 taskList.addTask(userInput);
             }
