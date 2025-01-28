@@ -10,7 +10,7 @@ public class TaskList {
         taskCount++;
     }
 
-    public void listTask() {
+    public void listTasks() {
         System.out.println(horizontalLineSeparator + "\nThis is what you need to do");
         for (int i = 0; i < taskCount; i++) {
             System.out.println(i + 1 + ". [" + taskList[i].getStatusIcon() + "] " + taskList[i].getTaskName());
