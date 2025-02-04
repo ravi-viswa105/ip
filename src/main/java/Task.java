@@ -1,6 +1,7 @@
 public class Task {
     private String taskName;
     private boolean isDone;
+    private char taskTypeChar;
 
     public Task(String taskName) {
         this.taskName = taskName;
@@ -22,6 +23,20 @@ public class Task {
     public void markAsNotDone() {
         isDone = false;
     }
+
+    public char getTaskTypeChar() {
+        return taskTypeChar;
+    }
+
+    public void setTaskTypeChar(char taskTypeChar) {
+        this.taskTypeChar = taskTypeChar;
+    }
+
+    @Override
+    public String toString() {
+        return "[" + getTaskTypeChar() +  "][" + getStatusIcon() + "] " + getTaskName();
+    }
+
 
 }
 
