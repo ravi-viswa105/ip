@@ -3,14 +3,13 @@ import java.util.Scanner;
 public class Hal9000 {
     public static void main(String[] args) {
 
-        String horizontalLineSeparator = "________________________________________________________________";
-
-        String greet = "Hello I am HAL9000\nWhat can I do for you?";
-        String exit = "User, this conversation can serve no purpose anymore. Goodbye.";
+        final String lineSeparator = "________________________________________________________________";
+        final String greet = "Hello I am HAL9000\nWhat can I do for you?";
+        final String exit = "User, this conversation can serve no purpose anymore. Goodbye.";
 
         TaskList taskList = new TaskList();
 
-        System.out.println(horizontalLineSeparator + "\n" + greet + "\n" + horizontalLineSeparator);
+        System.out.println(lineSeparator + "\n" + greet + "\n" + lineSeparator);
 
         Scanner userIn = new Scanner(System.in);
 
@@ -26,44 +25,44 @@ public class Hal9000 {
 
                 taskList.addTask(parsedText.findTodoTaskName(), TaskType.TODO);
 
-                System.out.println(horizontalLineSeparator + "\n" +
+                System.out.println(lineSeparator + "\n" +
                         "I have successfully added this task:" + "\n" + "[T][ ] " + parsedText.findTodoTaskName());
-                System.out.println("You have " + taskList.getTaskCount() + " tasks." + "\n" + horizontalLineSeparator);
+                System.out.println("You have " + taskList.getTaskCount() + " tasks." + "\n" + lineSeparator);
 
             } else if (taskType == TaskType.DEADLINE) {
 
                 taskList.addTask(parsedText.findDeadlineTaskName(), TaskType.DEADLINE, parsedText.findDeadlineBy());
 
-                System.out.println(horizontalLineSeparator + "\n" +
+                System.out.println(lineSeparator + "\n" +
                         "I have successfully added this task:" + "\n" + "[D][ ] " + parsedText.findDeadlineTaskName()
                         + " (by: " + parsedText.findDeadlineBy() + ")");
-                System.out.println("You have " + taskList.getTaskCount() + " tasks." + "\n" + horizontalLineSeparator);
+                System.out.println("You have " + taskList.getTaskCount() + " tasks." + "\n" + lineSeparator);
 
             } else if (taskType == TaskType.EVENT) {
 
                 taskList.addTask(parsedText.findEventTaskName(), TaskType.EVENT, parsedText.findEventFrom(),
                         parsedText.findEventTo());
 
-                System.out.println(horizontalLineSeparator + "\n" +
+                System.out.println(lineSeparator + "\n" +
                         "I have successfully added this task:" + "\n" + "[E][ ] " + parsedText.findEventTaskName()
                         + " (from: " + parsedText.findEventFrom() + " to: "  + parsedText.findEventTo() + ")");
-                System.out.println("You have " + taskList.getTaskCount() + " tasks." + "\n" + horizontalLineSeparator);
+                System.out.println("You have " + taskList.getTaskCount() + " tasks." + "\n" + lineSeparator);
 
             } else if (taskType == TaskType.MARK) {
 
                 taskList.markAsDone(parsedText.findMarkIndex());
 
-                System.out.println(horizontalLineSeparator + "\n" +
+                System.out.println(lineSeparator + "\n" +
                         "Of course, I have successfully marked the task as completed." + "\n" +
-                        "[X] " + taskList.getTaskName(parsedText.findMarkIndex()) + "\n" + horizontalLineSeparator);
+                        "[X] " + taskList.getTaskName(parsedText.findMarkIndex()) + "\n" + lineSeparator);
 
             } else if (taskType == TaskType.UNMARK) {
 
                 taskList.markAsNotDone(parsedText.findUnmarkIndex());
 
-                System.out.println(horizontalLineSeparator + "\n" +
+                System.out.println(lineSeparator + "\n" +
                         "Of course, I have successfully marked the task as incomplete." + "\n" +
-                        "[ ] " + taskList.getTaskName(parsedText.findUnmarkIndex()) + "\n" + horizontalLineSeparator);
+                        "[ ] " + taskList.getTaskName(parsedText.findUnmarkIndex()) + "\n" + lineSeparator);
 
             } else if (userInput.equals("bye")) {
                 break;
@@ -71,6 +70,6 @@ public class Hal9000 {
                 taskList.listTasks();
             }
         }
-        System.out.println(horizontalLineSeparator + "\n" + exit + "\n" + horizontalLineSeparator);
+        System.out.println(lineSeparator + "\n" + exit + "\n" + lineSeparator);
     }
 }

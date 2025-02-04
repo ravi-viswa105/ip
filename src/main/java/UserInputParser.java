@@ -9,22 +9,16 @@ public class UserInputParser {
     }
 
     public TaskType findTaskType() {
-        if (inputSplit[0].equals("todo")) {
-            return TaskType.TODO;
-        } else if (inputSplit[0].equals("deadline")) {
-            return TaskType.DEADLINE;
-        } else if (inputSplit[0].equals("event")) {
-            return TaskType.EVENT;
-        } else if (inputSplit[0].equals("mark")) {
-            return TaskType.MARK;
-        } else if (inputSplit[0].equals("unmark")) {
-            return TaskType.UNMARK;
-        } else if (inputSplit[0].equals("bye")) {
-            return TaskType.BYE;
-        } else if (inputSplit[0].equals("list")) {
-            return TaskType.LIST;
-        }
-        return TaskType.NONE;
+        return switch (inputSplit[0]) {
+            case "todo" -> TaskType.TODO;
+            case "deadline" -> TaskType.DEADLINE;
+            case "event" -> TaskType.EVENT;
+            case "mark" -> TaskType.MARK;
+            case "unmark" -> TaskType.UNMARK;
+            case "bye" -> TaskType.BYE;
+            case "list" -> TaskType.LIST;
+            default -> TaskType.NONE;
+        };
     }
 
     public String findTodoTaskName() {
