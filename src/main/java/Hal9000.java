@@ -3,19 +3,20 @@ import java.util.Scanner;
 public class Hal9000 {
     public static void main(String[] args) {
 
-        String userInput;
         String horizontalLineSeparator = "________________________________________________________________";
 
-        String greet = "Hello I am HAL9000 \nWhat can I do for you?";
+        String greet = "Hello I am HAL9000\nWhat can I do for you?";
         String exit = "User, this conversation can serve no purpose anymore. Goodbye.";
 
         TaskList taskList = new TaskList();
 
         System.out.println(horizontalLineSeparator + "\n" + greet + "\n" + horizontalLineSeparator);
 
+        Scanner userIn = new Scanner(System.in);
+
         while(true) {
-            Scanner userIn = new Scanner(System.in);
-            userInput = userIn.nextLine();
+
+            String userInput = userIn.nextLine();
             String[] markedTask = userInput.split(" ");
 
             UserInputParser parsedText = new UserInputParser(userInput);
