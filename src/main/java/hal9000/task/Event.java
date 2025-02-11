@@ -1,3 +1,5 @@
+package hal9000.task;
+
 public class Event extends Task {
 
     protected String from;

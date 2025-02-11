@@ -1,3 +1,8 @@
+package hal9000;
+
+import hal9000.task.TaskList;
+import hal9000.task.TaskType;
+
 import java.util.Scanner;
 
 public class Hal9000 {

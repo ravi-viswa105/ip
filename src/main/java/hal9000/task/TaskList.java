@@ -1,3 +1,7 @@
+package hal9000.task;
+
+import hal9000.Hal9000Exception;
+
 public class TaskList {
 
     static final int MAX_NUMBER_OF_TASKS = 100;
@@ -30,7 +34,7 @@ public class TaskList {
         System.out.println(lineSeparator);
     }
 
-    public void markAsDone(int index) throws Hal9000Exception{
+    public void markAsDone(int index) throws Hal9000Exception {
         if (index < 1 || index > taskCount) {
             throw new Hal9000Exception("You cannot mark this task as it is out of bounds");
         }

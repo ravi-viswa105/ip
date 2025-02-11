@@ -1,3 +1,7 @@
+package hal9000;
+
+import hal9000.task.TaskType;
+
 public class UserInputParser {
 
     private String userInput;
