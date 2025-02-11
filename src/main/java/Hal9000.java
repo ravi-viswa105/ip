@@ -15,6 +15,8 @@ public class Hal9000 {
 
         while(true) {
 
+            try {
+
             String userInput = userIn.nextLine();
             String[] markedTask = userInput.split(" ");
 
@@ -45,7 +47,7 @@ public class Hal9000 {
 
                 System.out.println(lineSeparator + "\n" +
                         "I have successfully added this task:" + "\n" + "[E][ ] " + parsedText.findEventTaskName()
-                        + " (from: " + parsedText.findEventFrom() + " to: "  + parsedText.findEventTo() + ")");
+                        + " (from: " + parsedText.findEventFrom() + " to: " + parsedText.findEventTo() + ")");
                 System.out.println("You have " + taskList.getTaskCount() + " tasks." + "\n" + lineSeparator);
 
             } else if (taskType == TaskType.MARK) {
@@ -68,6 +70,9 @@ public class Hal9000 {
                 break;
             } else if (userInput.equals("list")) {
                 taskList.listTasks();
+            }
+        } catch (Hal9000Exception e) {
+                e.printException();
             }
         }
         System.out.println(lineSeparator + "\n" + exit + "\n" + lineSeparator);

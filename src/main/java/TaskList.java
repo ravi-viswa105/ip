@@ -30,11 +30,17 @@ public class TaskList {
         System.out.println(lineSeparator);
     }
 
-    public void markAsDone(int index) {
+    public void markAsDone(int index) throws Hal9000Exception{
+        if (index < 1 || index > taskCount) {
+            throw new Hal9000Exception("You cannot mark this task as it is out of bounds");
+        }
         taskList[index-1].markAsDone();
     }
 
-    public void markAsNotDone(int index) {
+    public void markAsNotDone(int index) throws Hal9000Exception {
+        if (index < 1 || index > taskCount) {
+            throw new Hal9000Exception("You cannot unmark this task as it is out of bounds");
+        }
         taskList[index-1].markAsNotDone();
     }
 
