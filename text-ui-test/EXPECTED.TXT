@@ -29,11 +29,11 @@ You have 5 tasks.
 ________________________________________________________________
 ________________________________________________________________
 Of course, I have successfully marked the task as completed.
-[X] read book
+[T][X] read book
 ________________________________________________________________
 ________________________________________________________________
 Of course, I have successfully marked the task as completed.
-[X] join sports club
+[T][X] join sports club
 ________________________________________________________________
 ________________________________________________________________
 This is what you need to do
@@ -52,6 +52,11 @@ ________________________________________________________________
 I have successfully added this task:
 [E][ ] project meeting (from: Mon 2pm to: 4pm)
 You have 7 tasks.
+________________________________________________________________
+________________________________________________________________
+Of course, I have successfully deleted this task:
+[E][ ] project meeting (from: Mon 2pm to: 4pm)
+You have 6 tasks.
 ________________________________________________________________
 ________________________________________________________________
 I'm sorry User. I'm afraid I can't do that
@@ -73,6 +78,9 @@ You cannot mark this task as it is out of bounds
 ________________________________________________________________
 ________________________________________________________________
 You cannot unmark this task as it is out of bounds
+________________________________________________________________
+________________________________________________________________
+You cannot delete this task as it is out of bounds
 ________________________________________________________________
 ________________________________________________________________
 User, this conversation can serve no purpose anymore. Goodbye.

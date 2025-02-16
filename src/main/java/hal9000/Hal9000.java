@@ -56,20 +56,33 @@ public class Hal9000 {
                 System.out.println("You have " + taskList.getTaskCount() + " tasks." + "\n" + lineSeparator);
 
             } else if (taskType == TaskType.MARK) {
-
-                taskList.markAsDone(parsedText.findMarkIndex());
+                int markIndex = parsedText.findMarkIndex();
+                taskList.markAsDone(markIndex);
 
                 System.out.println(lineSeparator + "\n" +
                         "Of course, I have successfully marked the task as completed." + "\n" +
-                        "[X] " + taskList.getTaskName(parsedText.findMarkIndex()) + "\n" + lineSeparator);
+                        taskList.printTask(markIndex) + "\n" + lineSeparator);
 
             } else if (taskType == TaskType.UNMARK) {
-
+                int unmarkIndex = parsedText.findUnmarkIndex();
                 taskList.markAsNotDone(parsedText.findUnmarkIndex());
 
                 System.out.println(lineSeparator + "\n" +
                         "Of course, I have successfully marked the task as incomplete." + "\n" +
-                        "[ ] " + taskList.getTaskName(parsedText.findUnmarkIndex()) + "\n" + lineSeparator);
+                        taskList.printTask(unmarkIndex) + "\n" + lineSeparator);
+
+            } else if (taskType == TaskType.DELETE) {
+                int deleteIndex = parsedText.findDeleteIndex();
+                if (deleteIndex < 1 || deleteIndex > taskList.getTaskCount()) {
+                    throw new Hal9000Exception("You cannot delete this task as it is out of bounds");
+                }
+
+                System.out.println(lineSeparator + "\n" +
+                        "Of course, I have successfully deleted this task:" + "\n" +
+                        taskList.printTask(deleteIndex));
+
+                taskList.deleteTask(parsedText.findDeleteIndex());
+                System.out.println("You have " + taskList.getTaskCount() + " tasks." + "\n" + lineSeparator);
 
             } else if (userInput.equals("bye")) {
                 break;

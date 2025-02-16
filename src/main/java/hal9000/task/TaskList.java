@@ -5,9 +5,6 @@ import java.util.ArrayList;
 
 public class TaskList {
 
-    static final int MAX_NUMBER_OF_TASKS = 100;
-
-    //private final Task[] taskList = new Task[MAX_NUMBER_OF_TASKS];
     ArrayList<Task> taskList = new ArrayList<>();
     private int taskCount = 0;
 
@@ -28,6 +25,14 @@ public class TaskList {
         taskCount++;
     }
 
+    public void deleteTask(int index) throws Hal9000Exception {
+        if (index < 1 || index > taskCount) {
+            throw new Hal9000Exception("You cannot delete this task as it is out of bounds");
+        }
+        taskList.remove(index - 1);
+        taskCount--;
+    }
+
     public void listTasks() {
         System.out.println(lineSeparator + "\nThis is what you need to do");
         for (int i = 0; i < taskCount; i++) {
@@ -40,23 +45,34 @@ public class TaskList {
         if (index < 1 || index > taskCount) {
             throw new Hal9000Exception("You cannot mark this task as it is out of bounds");
         }
-        taskList.get(index-1).markAsDone();
+        taskList.get(index - 1).markAsDone();
     }
 
     public void markAsNotDone(int index) throws Hal9000Exception {
         if (index < 1 || index > taskCount) {
             throw new Hal9000Exception("You cannot unmark this task as it is out of bounds");
         }
-        taskList.get(index-1).markAsNotDone();
+        taskList.get(index - 1).markAsNotDone();
     }
 
     public String getTaskName(int index) {
-        return taskList.get(index-1).getTaskName();
+        return taskList.get(index - 1).getTaskName();
     }
 
     public int getTaskCount() {
         return taskCount;
     }
 
+    public char getTaskType(int index) {
+        return taskList.get(index - 1).getTaskTypeChar();
+    }
+
+    public boolean getIsTaskDone(int index) {
+        return taskList.get(index - 1).isTaskDone();
+    }
+
+    public String printTask(int index) {
+        return taskList.get(index - 1).toString();
+    }
 
 }
