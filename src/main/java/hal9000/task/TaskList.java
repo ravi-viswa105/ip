@@ -2,6 +2,12 @@ package hal9000.task;
 
 import hal9000.Hal9000Exception;
 import java.util.ArrayList;
+import hal9000.SaveFileParser;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
+
 
 public class TaskList {
 
@@ -45,6 +51,7 @@ public class TaskList {
         if (index < 1 || index > taskCount) {
             throw new Hal9000Exception("You cannot mark this task as it is out of bounds");
         }
+
         taskList.get(index - 1).markAsDone();
     }
 
@@ -63,6 +70,7 @@ public class TaskList {
         return taskCount;
     }
 
+
     public char getTaskType(int index) {
         return taskList.get(index - 1).getTaskTypeChar();
     }
@@ -74,5 +82,39 @@ public class TaskList {
     public String printTask(int index) {
         return taskList.get(index - 1).toString();
     }
+
+    public void saveTaskList(File saveFile) throws IOException {
+        FileWriter fw = new FileWriter(saveFile);
+        for (int i = 0; i < taskCount; i++) {
+            fw.write(taskList.get(i).toString() + System.lineSeparator());
+        }
+        fw.close();
+    }
+
+    public void loadTaskList(File saveFile) throws IOException {
+        Scanner s = new Scanner(saveFile);
+        int saveTaskCount = 0;
+        while (s.hasNext()) {
+            String currentTask = s.nextLine();
+            SaveFileParser parsedInput = new SaveFileParser(currentTask);
+            TaskType currentTaskType = parsedInput.findTaskType();
+            boolean isTaskComplete = parsedInput.isTaskComplete();
+
+            if (currentTaskType == TaskType.TODO) {
+                addTask(parsedInput.findTodoTaskName(), currentTaskType);
+            } else if (currentTaskType == TaskType.DEADLINE) {
+                addTask(parsedInput.findDeadlineTaskName(), currentTaskType, parsedInput.findDeadlineBy());
+            } else if (currentTaskType == TaskType.EVENT) {
+                addTask(parsedInput.findEventTaskName(), currentTaskType,
+                        parsedInput.findEventFrom(), parsedInput.findEventTo());
+            }
+            saveTaskCount++;
+            if (isTaskComplete && currentTaskType != TaskType.NONE) {
+                taskList.get(saveTaskCount - 1).markAsDone();
+            }
+        }
+    }
+
+
 
 }
