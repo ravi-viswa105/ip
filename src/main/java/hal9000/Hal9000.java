@@ -3,16 +3,25 @@ package hal9000;
 import hal9000.task.TaskList;
 import hal9000.task.TaskType;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Hal9000 {
     public static void main(String[] args) {
+
+        File saveFile = new File("src/main/java/hal9000/data/tasks.txt");
 
         final String lineSeparator = "________________________________________________________________";
         final String greet = "Hello I am HAL9000\nWhat can I do for you?";
         final String exit = "User, this conversation can serve no purpose anymore. Goodbye.";
 
         TaskList taskList = new TaskList();
+        try {
+            taskList.loadTaskList(saveFile);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());;
+        }
 
         System.out.println(lineSeparator + "\n" + greet + "\n" + lineSeparator);
 
@@ -72,12 +81,16 @@ public class Hal9000 {
                         "[ ] " + taskList.getTaskName(parsedText.findUnmarkIndex()) + "\n" + lineSeparator);
 
             } else if (userInput.equals("bye")) {
+                taskList.saveTaskList(saveFile);
                 break;
             } else if (userInput.equals("list")) {
                 taskList.listTasks();
             }
         } catch (Hal9000Exception e) {
                 e.printException();
+            }
+            catch (IOException e) {
+                System.out.println("Something went wrong");
             }
         }
         System.out.println(lineSeparator + "\n" + exit + "\n" + lineSeparator);
