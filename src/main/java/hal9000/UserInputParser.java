@@ -21,6 +21,7 @@ public class UserInputParser {
             case "unmark" -> TaskType.UNMARK;
             case "bye" -> TaskType.BYE;
             case "list" -> TaskType.LIST;
+            case "delete" -> TaskType.DELETE;
             default -> throw new Hal9000Exception("I'm sorry User. I'm afraid I can't do that");
         };
     }
@@ -79,6 +80,10 @@ public class UserInputParser {
     }
 
     public int findUnmarkIndex() {
+        return Integer.parseInt(userInput.substring(6).trim());
+    }
+
+    public int findDeleteIndex() {
         return Integer.parseInt(userInput.substring(6).trim());
     }
 

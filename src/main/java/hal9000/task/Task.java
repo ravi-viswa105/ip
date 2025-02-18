@@ -34,6 +34,10 @@ public class Task {
         this.taskTypeChar = taskTypeChar;
     }
 
+    public boolean isTaskDone() {
+        return isDone;
+    }
+
     @Override
     public String toString() {
         return "[" + getTaskTypeChar() +  "][" + getStatusIcon() + "] " + getTaskName();
