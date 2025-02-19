@@ -1,6 +1,8 @@
 package hal9000.task;
 
 import hal9000.Hal9000Exception;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import hal9000.SaveFileParser;
 import java.io.File;
@@ -92,6 +94,12 @@ public class TaskList {
     }
 
     public void loadTaskList(File saveFile) throws IOException {
+
+        if (!Files.exists(saveFile.toPath())) {
+            Files.createDirectories(Path.of(saveFile.getParent()));
+            Files.createFile(saveFile.toPath());
+        }
+
         Scanner s = new Scanner(saveFile);
         int saveTaskCount = 0;
         while (s.hasNext()) {

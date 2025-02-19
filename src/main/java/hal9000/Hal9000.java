@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class Hal9000 {
     public static void main(String[] args) {
 
-        File saveFile = new File("src/main/java/hal9000/data/tasks.txt");
+        File saveFile = new File("data/tasks.txt");
 
         final String lineSeparator = "________________________________________________________________";
         final String greet = "Hello I am HAL9000\nWhat can I do for you?";
