@@ -1,6 +1,6 @@
 package hal9000.task;
 
-public class Task {
+public abstract class Task {
     private String taskName;
     private boolean isDone;
     private char taskTypeChar;

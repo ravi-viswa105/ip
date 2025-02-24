@@ -1,5 +1,7 @@
-package hal9000;
+package hal9000.parser;
 
+import hal9000.Hal9000Exception;
+import hal9000.command.*;
 import hal9000.task.TaskType;
 
 public class UserInputParser {
@@ -10,6 +12,17 @@ public class UserInputParser {
     public UserInputParser(String userInput) {
         this.userInput = userInput;
         inputSplit = userInput.split(" ");
+    }
+
+    public Command parse() throws Hal9000Exception {
+        return switch (inputSplit[0]) {
+            case "todo", "event", "deadline" -> new AddCommand(userInput, findTaskType());
+            case "mark", "unmark" -> new MarkCommand(userInput, findTaskType());
+            case "bye" -> new ExitCommand();
+            case "list" -> new ListCommand();
+            case "delete" -> new DeleteCommand(userInput);
+            default -> throw new Hal9000Exception("I'm sorry User. I'm afraid I can't do that");
+        };
     }
 
     public TaskType findTaskType() throws Hal9000Exception {

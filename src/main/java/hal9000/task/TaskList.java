@@ -1,14 +1,8 @@
 package hal9000.task;
 
 import hal9000.Hal9000Exception;
-import java.nio.file.Files;
-import java.nio.file.Path;
+
 import java.util.ArrayList;
-import hal9000.SaveFileParser;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Scanner;
 
 
 public class TaskList {
@@ -42,6 +36,10 @@ public class TaskList {
     }
 
     public void listTasks() {
+        if (taskList.isEmpty()) {
+            System.out.println(lineSeparator + "\nUser, you have no tasks\n" + lineSeparator);
+            return;
+        }
         System.out.println(lineSeparator + "\nThis is what you need to do");
         for (int i = 0; i < taskCount; i++) {
             System.out.println((i + 1) + "." + taskList.get(i).toString());
@@ -72,7 +70,6 @@ public class TaskList {
         return taskCount;
     }
 
-
     public char getTaskType(int index) {
         return taskList.get(index - 1).getTaskTypeChar();
     }
@@ -85,44 +82,7 @@ public class TaskList {
         return taskList.get(index - 1).toString();
     }
 
-    public void saveTaskList(File saveFile) throws IOException {
-        FileWriter fw = new FileWriter(saveFile);
-        for (int i = 0; i < taskCount; i++) {
-            fw.write(taskList.get(i).toString() + System.lineSeparator());
-        }
-        fw.close();
+    public Task getTask(int index) {
+        return taskList.get(index);
     }
-
-    public void loadTaskList(File saveFile) throws IOException {
-
-        if (!Files.exists(saveFile.toPath())) {
-            Files.createDirectories(Path.of(saveFile.getParent()));
-            Files.createFile(saveFile.toPath());
-        }
-
-        Scanner s = new Scanner(saveFile);
-        int saveTaskCount = 0;
-        while (s.hasNext()) {
-            String currentTask = s.nextLine();
-            SaveFileParser parsedInput = new SaveFileParser(currentTask);
-            TaskType currentTaskType = parsedInput.findTaskType();
-            boolean isTaskComplete = parsedInput.isTaskComplete();
-
-            if (currentTaskType == TaskType.TODO) {
-                addTask(parsedInput.findTodoTaskName(), currentTaskType);
-            } else if (currentTaskType == TaskType.DEADLINE) {
-                addTask(parsedInput.findDeadlineTaskName(), currentTaskType, parsedInput.findDeadlineBy());
-            } else if (currentTaskType == TaskType.EVENT) {
-                addTask(parsedInput.findEventTaskName(), currentTaskType,
-                        parsedInput.findEventFrom(), parsedInput.findEventTo());
-            }
-            saveTaskCount++;
-            if (isTaskComplete && currentTaskType != TaskType.NONE) {
-                taskList.get(saveTaskCount - 1).markAsDone();
-            }
-        }
-    }
-
-
-
 }

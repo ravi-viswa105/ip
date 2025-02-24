@@ -1,4 +1,4 @@
-package hal9000;
+package hal9000.parser;
 
 import hal9000.task.TaskType;
 
