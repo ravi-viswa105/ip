@@ -11,16 +11,29 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Scanner;
 
+/**
+ * Handles loading and saving of data into local save file
+ */
 public class Storage {
 
     File saveFile;
     TaskList taskList;
 
+    /**
+     * Constructs a Storage object to track directory of save file and list of tasks
+     * @param saveFileDirectory Directory of save file
+     * @param taskList ArrayList of all tasks
+     */
     public Storage(File saveFileDirectory, TaskList taskList) {
         this.saveFile = saveFileDirectory;
         this.taskList = taskList;
     }
 
+    /**
+     * Saves tasks into local file
+     * @param saveFile File object with save file directory
+     * @throws IOException If there is error in saving task
+     */
     public void saveTaskList(File saveFile) throws IOException {
         FileWriter fw = new FileWriter(saveFile);
         for (int i = 0; i < taskList.getTaskCount(); i++) {
@@ -29,6 +42,11 @@ public class Storage {
         fw.close();
     }
 
+    /**
+     * Loads tasks from local file
+     * @param saveFile File object with save file directory
+     * @throws IOException If there is error in loading task
+     */
     public void loadTaskList(File saveFile) throws IOException {
 
         if (!Files.exists(saveFile.toPath())) {
