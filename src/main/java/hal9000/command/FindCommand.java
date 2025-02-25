@@ -7,14 +7,28 @@ import hal9000.parser.UserInputParser;
 import hal9000.task.TaskList;
 import java.util.ArrayList;
 
+/**
+ * Handles Find Command
+ */
 public class FindCommand extends Command {
 
     private String userInput;
 
+    /**
+     * Constructs a Find Command with the user input
+     * @param userInput The complete input provided by the user
+     */
     public FindCommand(String userInput) {
         this.userInput = userInput;
     }
 
+    /**
+     *
+     * @param taskList The ArrayList containing all of the tasks
+     * @param ui The Ui object used to display output to the users
+     * @param storage The Storage object used to save and load tasks locally
+     * @throws Hal9000Exception Exception to throw if there is error in deleting task
+     */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) throws Hal9000Exception {
         final String lineSeparator = "________________________________________________________________";

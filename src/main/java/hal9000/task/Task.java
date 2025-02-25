@@ -106,7 +106,6 @@ public abstract class Task {
         return null;
     }
 
-
     private static final DateTimeFormatter[] FORMATS = {
             DateTimeFormatter.ofPattern("d/M/yyyy"),
             DateTimeFormatter.ofPattern("yyyy-MM-dd"),
