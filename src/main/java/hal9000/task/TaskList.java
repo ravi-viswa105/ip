@@ -78,7 +78,7 @@ public class TaskList {
         return taskList.get(index - 1).isTaskDone();
     }
 
-    public String printTask(int index) {
+    public String taskToString(int index) {
         return taskList.get(index - 1).toString();
     }
 

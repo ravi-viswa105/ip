@@ -27,7 +27,7 @@ public class MarkCommand extends Command {
 
             System.out.println(lineSeparator + "\n" +
                     "Of course, I have successfully marked the task as completed." + "\n" +
-                    taskList.printTask(markIndex) + "\n" + lineSeparator);
+                    taskList.taskToString(markIndex) + "\n" + lineSeparator);
 
         } else if (taskType == TaskType.UNMARK) {
             int unmarkIndex = parsedText.findUnmarkIndex();
@@ -35,7 +35,7 @@ public class MarkCommand extends Command {
 
             System.out.println(lineSeparator + "\n" +
                     "Of course, I have successfully marked the task as incomplete." + "\n" +
-                    taskList.printTask(unmarkIndex) + "\n" + lineSeparator);
+                    taskList.taskToString(unmarkIndex) + "\n" + lineSeparator);
 
         }
     }

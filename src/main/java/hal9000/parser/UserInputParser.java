@@ -21,6 +21,7 @@ public class UserInputParser {
             case "bye" -> new ExitCommand();
             case "list" -> new ListCommand();
             case "delete" -> new DeleteCommand(userInput);
+            case "find" -> new FindCommand(userInput);
             default -> throw new Hal9000Exception("I'm sorry User. I'm afraid I can't do that");
         };
     }
@@ -35,6 +36,7 @@ public class UserInputParser {
             case "bye" -> TaskType.BYE;
             case "list" -> TaskType.LIST;
             case "delete" -> TaskType.DELETE;
+            case "find" -> TaskType.FIND;
             default -> throw new Hal9000Exception("I'm sorry User. I'm afraid I can't do that");
         };
     }
@@ -88,6 +90,10 @@ public class UserInputParser {
         return splitUserInput[1].trim();
     }
 
+    public String findSearchName() throws Hal9000Exception {
+        return userInput.substring(4).trim();
+    }
+
     public int findMarkIndex() {
         return Integer.parseInt(userInput.substring(4).trim());
     }
@@ -99,6 +105,7 @@ public class UserInputParser {
     public int findDeleteIndex() {
         return Integer.parseInt(userInput.substring(6).trim());
     }
+
 
 
 }
