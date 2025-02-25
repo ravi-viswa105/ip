@@ -41,7 +41,7 @@ public class AddCommand extends Command {
             taskList.addTask(parsedText.findTodoTaskName(), TaskType.TODO);
 
             System.out.println(lineSeparator + "\n" +
-                    "I have successfully added this task:" + "\n" + taskList.printTask(taskList.getTaskCount()));
+                    "I have successfully added this task:" + "\n" + taskList.taskToString(taskList.getTaskCount()));
             System.out.println("You have " + taskList.getTaskCount() + " tasks." + "\n" + lineSeparator);
 
         } else if (taskType == TaskType.DEADLINE) {
@@ -49,7 +49,7 @@ public class AddCommand extends Command {
             taskList.addTask(parsedText.findDeadlineTaskName(), TaskType.DEADLINE, parsedText.findDeadlineBy());
 
             System.out.println(lineSeparator + "\n" +
-                    "I have successfully added this task:" + "\n" + taskList.printTask(taskList.getTaskCount()));
+                    "I have successfully added this task:" + "\n" + taskList.taskToString(taskList.getTaskCount()));
             System.out.println("You have " + taskList.getTaskCount() + " tasks." + "\n" + lineSeparator);
 
         } else if (taskType == TaskType.EVENT) {
@@ -58,7 +58,7 @@ public class AddCommand extends Command {
                     parsedText.findEventTo());
 
             System.out.println(lineSeparator + "\n" +
-                    "I have successfully added this task:" + "\n" + taskList.printTask(taskList.getTaskCount()));
+                    "I have successfully added this task:" + "\n" + taskList.taskToString(taskList.getTaskCount()));
             System.out.println("You have " + taskList.getTaskCount() + " tasks." + "\n" + lineSeparator);
 
 
