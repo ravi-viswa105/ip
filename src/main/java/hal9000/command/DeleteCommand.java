@@ -38,7 +38,7 @@ public class DeleteCommand extends Command {
 
         System.out.println(lineSeparator + "\n" +
                 "Of course, I have successfully deleted this task:" + "\n" +
-                taskList.printTask(deleteIndex));
+                taskList.taskToString(deleteIndex));
 
         taskList.deleteTask(parsedText.findDeleteIndex());
         System.out.println("You have " + taskList.getTaskCount() + " tasks." + "\n" + lineSeparator);

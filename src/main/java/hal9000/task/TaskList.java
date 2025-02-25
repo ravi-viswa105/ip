@@ -134,13 +134,13 @@ public class TaskList {
     public boolean getIsTaskDone(int index) {
         return taskList.get(index - 1).isTaskDone();
     }
-
+    
     /**
      * Convert task at index to string
      * @param index Index of task in task list
      * @return task as string
      */
-    public String printTask(int index) {
+    public String taskToString(int index) {
         return taskList.get(index - 1).toString();
     }
 
