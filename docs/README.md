@@ -1,7 +1,5 @@
 # Hal9000 User Guide
 
-// Product screenshot goes here
-
 Hal9000 is a personal chatbot which will allow you to record your tasks in the form of todos, deadlines and events, and refer to them at a later time.
 
 ## Quick Start
@@ -18,13 +16,12 @@ Mac users: Ensure you have the precise JDK version prescribed here.
 5. Type the command in the command box and press Enter to execute it. e.g. typing `list` and pressing Enter will show the list of all of your tasks.
 Some example commands you can try:
 
-  `todo TaskName` : Create a todo task with task name "TaskName"
+    `todo TaskName` : Create a todo task with task name "TaskName"
 
-  `delete 1` : Delete the first task in the list
+    `delete 1` : Delete the first task in the list
 
-  `bye` : Exits the application
-
-6. Refer to the Features below for details of each command.
+    `bye` : Exits the application
+  
 
 ## Features
 
