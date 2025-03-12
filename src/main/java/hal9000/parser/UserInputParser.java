@@ -147,24 +147,42 @@ public class UserInputParser {
      * Finds the index of the task to be marked
      * @return index of the task to be marked
      */
-    public int findMarkIndex() {
+    public int findMarkIndex() throws Hal9000Exception {
+        try {
         return Integer.parseInt(userInput.substring(4).trim());
+        }
+        catch (NumberFormatException e) {
+            throw new Hal9000Exception("Sorry User, the mark index is not a number");
+        }
+
     }
 
     /**
      * Finds the index of the task to be unmarked
      * @return index of the task to be unmarked
      */
-    public int findUnmarkIndex() {
-        return Integer.parseInt(userInput.substring(6).trim());
+    public int findUnmarkIndex() throws Hal9000Exception {
+        try {
+            return Integer.parseInt(userInput.substring(6).trim());
+        }
+        catch (NumberFormatException e) {
+            throw new Hal9000Exception("Sorry User, the unmark index is not a number");
+        }
+
     }
 
     /**
      * Finds the index of the task to be deleted
      * @return index of the task to be deleted
      */
-    public int findDeleteIndex() {
-        return Integer.parseInt(userInput.substring(6).trim());
+    public int findDeleteIndex() throws Hal9000Exception {
+        try {
+            return Integer.parseInt(userInput.substring(6).trim());
+        }
+        catch (NumberFormatException e) {
+            throw new Hal9000Exception("Sorry User, the delete index is not a number");
+        }
+
     }
 
 
